@@ -1,0 +1,30 @@
+{
+  "name": "konkursmegak",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "env TZ='Europe/Warsaw' nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wachcio/KonkursMegaK.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wachcio/KonkursMegaK/issues"
+  },
+  "homepage": "https://github.com/wachcio/KonkursMegaK#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "dayjs": "^1.10.6",
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
