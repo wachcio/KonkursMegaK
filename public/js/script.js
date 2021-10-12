@@ -40,9 +40,9 @@
 
                 <td class="taskItemDone p-3">
                   <span class="${
-                    done === 'true' ? 'bg-green-500' : 'bg-red-500'
+                    done === true ? 'bg-green-500' : 'bg-red-500'
                   }  text-gray-50 rounded-md px-2 uppercase">${
-        done === 'true' ? 'ZROBIONE' : 'DO ZROBIENIA'
+        done === true ? 'ZROBIONE' : 'DO ZROBIENIA'
       }</span>
                 </td>
                 <td class="p-3">
