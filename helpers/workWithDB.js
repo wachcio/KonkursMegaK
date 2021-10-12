@@ -7,16 +7,6 @@ const isDBFile = async () => {
     await readFile(DB_PATH, 'utf-8');
     return true;
   } catch (err) {
-    // await writeFile(
-    //   DB_PATH,
-    //   JSON.stringify([
-    //     {
-    //       name: 'pierwszy',
-    //       done: false,
-    //     },
-    //   ]),
-    //   'utf-8',
-    // );
     return false;
   }
 };
@@ -32,8 +22,6 @@ const writeToDB = async data => {
   return await writeFile(DB_PATH, JSON.stringify(data), 'utf-8');
 };
 const deleteInDB = async (id, tasks) => {
-  //   console.log({ id, tasks });
-
   const idx = tasks.findIndex(task => task.id === id);
 
   if (idx >= 0) {
@@ -43,4 +31,13 @@ const deleteInDB = async (id, tasks) => {
   }
 };
 
-module.exports = { readToDB, writeToDB, deleteInDB };
+const updateDB = async (updatedTask, tasks) => {
+  const idx = tasks.findIndex(task => task.id === updatedTask.id);
+
+  if (idx >= 0) {
+    tasks[idx] = { ...{}, updatedTask };
+  }
+  return tasks;
+};
+
+module.exports = { readToDB, writeToDB, deleteInDB, updateDB };
