@@ -25,7 +25,7 @@ const readToDB = async () => {
   if (await isDBFile()) {
     return JSON.parse(await readFile(DB_PATH, 'utf-8'));
   } else {
-    return {};
+    return [];
   }
 };
 const writeToDB = async data => {
@@ -35,12 +35,11 @@ const deleteInDB = async (id, tasks) => {
   //   console.log({ id, tasks });
 
   const idx = tasks.findIndex(task => task.id === id);
-  tasks.splice(idx, 1);
 
   if (idx >= 0) {
-    return tasks;
+    return tasks.splice(idx, 1);
   } else {
-    return false;
+    return tasks;
   }
 };
 
