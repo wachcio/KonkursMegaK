@@ -4,9 +4,89 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>TODO lista</title>
   </head>
   <body>
-    <h1>TODO lista</h1>
+    <div class="flex items-center justify-center min-h-screen bg-gray-900">
+      <div class="col-span-12">
+        <div class="overflow-auto lg:overflow-visible">
+          <div class="flex justify-between border-b-2 border-fuchsia-900 pb-1">
+            <h2 class="text-2xl text-gray-200 font-bold text-base">TODO lista</h2>
+
+            <div>
+              <a
+                href="#"
+                class="
+                  material-icons-outlined
+                  text-4xl text-green-500
+                  hover:text-green-700
+                  py-1
+                  px-1
+                  text-base
+                  sm
+                  rounded-full
+                "
+              >
+                add_circle
+              </a>
+            </div>
+          </div>
+          <table class="table text-gray-400 border-separate space-y-6 text-sm">
+            <thead class="bg-blue-500 text-white">
+              <tr>
+                <th class="p-3">#</th>
+                <th class="p-3">Zadanie</th>
+                <th class="p-3 text-left">Status</th>
+                <th class="p-3 text-left">Akcje</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-blue-300 lg:text-black">
+                <td class="p-3 font-medium text-gray-700">1.</td>
+                <td class="p-3 font-medium text-gray-700">W poniedziałek wykąpać psa</td>
+
+                <td class="p-3">
+                  <span class="bg-green-500 text-gray-50 rounded-md px-2 uppercase">ZROBIONE</span>
+                </td>
+                <td class="p-3">
+                  <a href="#" class="hover:text-yellow-400 text-gray-700 mx-2">
+                    <i class="material-icons-outlined text-base">edit</i>
+                  </a>
+                  <a href="#" class="hover:text-red-500 text-gray-700 ml-2">
+                    <i class="material-icons-round text-base">delete_outline</i>
+                  </a>
+                </td>
+              </tr>
+              <tr class="bg-blue-300 lg:text-black">
+                <td class="p-3 font-medium text-gray-700">2.</td>
+                <td class="p-3 font-medium text-gray-700">Kupić paliwo do kosiarki</td>
+
+                <td class="p-3">
+                  <span class="bg-red-500 text-gray-50 rounded-md px-2 uppercase"
+                    >DO ZROBIENIA</span
+                  >
+                </td>
+                <td class="p-3">
+                  <a href="#" class="hover:text-yellow-400 text-gray-700 mx-2">
+                    <i class="material-icons-outlined text-base">edit</i>
+                  </a>
+                  <a href="#" class="hover:text-red-500 text-gray-700 ml-2">
+                    <i class="material-icons-round text-base">delete_outline</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="./js/script.js"></script>
   </body>
 </html>
