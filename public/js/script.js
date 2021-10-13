@@ -3,6 +3,8 @@
   const tasksList = document.querySelector('#tasksList');
   const addTaskDoneCheckbox = document.querySelector('#addTaskDoneCheckbox');
   const addTaskNameInput = document.querySelector('#addTaskNameInput');
+  const okTaskBtn = document.querySelector('#okTaskBtn');
+  const cancelTaskBtn = document.querySelector('#cancelTaskBtn');
 
   let tasks = [];
 
@@ -46,10 +48,10 @@
       }</span>
                 </td>
                 <td class="p-3">
-                  <span class="editTaskBtn hover:text-yellow-400 text-gray-700 mx-2">
+                  <span class="editTaskBtn hover:text-yellow-400 cursor-pointer text-gray-700 mx-2">
                     <i class="material-icons-outlined text-base">edit</i>
                   </span>
-                  <span class="deleteTaskBtn hover:text-red-500 text-gray-700 ml-2">
+                  <span class="deleteTaskBtn hover:text-red-500 cursor-pointer text-gray-700 ml-2">
                     <i class="material-icons-round text-base">delete_outline</i>
                   </span>
                 </td>
@@ -91,5 +93,18 @@
 
     await renderTodoList();
     resetToDefaultForm();
+  });
+
+  okTaskBtn.addEventListener('click', e => {
+    e.preventDefault();
+    okTaskBtn.classList.add('hidden');
+    cancelTaskBtn.classList.add('hidden');
+    addTaskBtn.classList.remove('hidden');
+  });
+  cancelTaskBtn.addEventListener('click', e => {
+    e.preventDefault();
+    okTaskBtn.classList.add('hidden');
+    cancelTaskBtn.classList.add('hidden');
+    addTaskBtn.classList.remove('hidden');
   });
 })();
