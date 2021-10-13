@@ -6,7 +6,22 @@
   const okTaskBtn = document.querySelector('#okTaskBtn');
   const cancelTaskBtn = document.querySelector('#cancelTaskBtn');
 
+  let taskItem = Array.from(document.querySelectorAll('.taskItem'));
+  let taskItemDone = document.querySelectorAll('.taskItemDone');
+  let taskItemName = document.querySelectorAll('.taskItemName');
+  let editTaskBtn = document.querySelectorAll('.editTaskBtn');
+  let deleteTaskBtn = document.querySelectorAll('.deleteTaskBtn');
+
   let tasks = [];
+  let selectedTask = {};
+
+  const updateNodeLists = () => {
+    taskItem = Array.from(document.querySelectorAll('.taskItem'));
+    taskItemDone = document.querySelectorAll('.taskItemDone');
+    taskItemName = document.querySelectorAll('.taskItemName');
+    editTaskBtn = document.querySelectorAll('.editTaskBtn');
+    deleteTaskBtn = document.querySelectorAll('.deleteTaskBtn');
+  };
 
   const getItemsFromAPI = async () => {
     return (tasks = await axios
@@ -22,11 +37,34 @@
 
   await getItemsFromAPI();
 
-  console.log({ tasks });
+  const deleteTaskFromDb = async () => {
+    return await axios
+      .delete('/todo', { data: { id: selectedTask.id } })
+      .then(({ data }) => {
+        return data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const addListeners = () => {
+    taskItem.map((el, i) => {
+      editTaskBtn[i].addEventListener('click', async e => {
+        e.preventDefault();
+        selectedTask = tasks[i];
+      });
+      deleteTaskBtn[i].addEventListener('click', async e => {
+        e.preventDefault();
+        selectedTask = tasks[i];
+
+        tasks = await deleteTaskFromDb();
+        await renderTodoList();
+      });
+    });
+  };
 
   const renderTodoList = async () => {
-    console.log(typeof tasks);
-
     if (tasks.length === 0) return;
 
     let HTML = '';
@@ -34,7 +72,7 @@
 
     tasks.map(({ name, done, id }, idx) => {
       HTML += `
-      <tr class="tasksItem bg-blue-300 lg:text-black" data-task-id="${id}">
+      <tr class="taskItem bg-blue-300 lg:text-black" data-task-id="${id}">
                 <td class="taskItemOrdinalNumber p-3 font-medium text-gray-700">${idx + 1}.</td>
                 <td class="taskItemName p-3 font-medium text-gray-700">
                  ${name}
@@ -59,10 +97,14 @@
     });
 
     tasksList.innerHTML += HTML;
-  };
-  renderTodoList();
 
-  const addItemToDb = async () => {
+    updateNodeLists();
+
+    addListeners();
+  };
+  await renderTodoList();
+
+  const addTaskToDb = async () => {
     return await axios
       .post('/todo', {
         name: addTaskNameInput.value,
@@ -81,15 +123,11 @@
     addTaskNameInput.value = '';
   };
 
-  const taskItemDone = document.querySelectorAll('.taskItemDone');
-  const editTaskBtn = document.querySelectorAll('.editTaskBtn');
-  const deleteTaskBtn = document.querySelectorAll('.deleteTaskBtn');
-
   addTaskBtn.addEventListener('click', async e => {
     e.preventDefault();
     if (addTaskNameInput.value === '') return;
 
-    tasks = await addItemToDb();
+    tasks = await addTaskToDb();
 
     await renderTodoList();
     resetToDefaultForm();
@@ -101,6 +139,7 @@
     cancelTaskBtn.classList.add('hidden');
     addTaskBtn.classList.remove('hidden');
   });
+
   cancelTaskBtn.addEventListener('click', e => {
     e.preventDefault();
     okTaskBtn.classList.add('hidden');

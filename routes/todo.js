@@ -30,6 +30,8 @@ router.put('/', async (req, res, next) => {
 });
 
 router.delete('/', async (req, res, next) => {
+  console.log(req.body);
+
   tasks = await readToDB();
   await deleteInDB(req.body.id, tasks);
   await writeToDB(tasks);
