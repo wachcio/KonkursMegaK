@@ -35,7 +35,7 @@ const updateDB = async (updatedTask, tasks) => {
   const idx = tasks.findIndex(task => task.id === updatedTask.id);
 
   if (idx >= 0) {
-    tasks[idx] = { ...{}, updatedTask };
+    tasks[idx] = updatedTask;
   }
   return tasks;
 };

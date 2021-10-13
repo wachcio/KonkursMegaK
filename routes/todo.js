@@ -25,12 +25,13 @@ router.post('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   tasks = await readToDB();
+
   await updateDB(req.body, tasks);
   res.json(tasks);
 });
 
 router.delete('/', async (req, res, next) => {
-  console.log(req.body);
+  c;
 
   tasks = await readToDB();
   await deleteInDB(req.body.id, tasks);
