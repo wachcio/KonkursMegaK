@@ -53,6 +53,13 @@
       editTaskBtn[i].addEventListener('click', async e => {
         e.preventDefault();
         selectedTask = tasks[i];
+
+        okTaskBtn.classList.remove('hidden');
+        cancelTaskBtn.classList.remove('hidden');
+        addTaskBtn.classList.add('hidden');
+
+        addTaskNameInput.value = selectedTask.name;
+        addTaskDoneCheckbox.checked = selectedTask.done;
       });
       deleteTaskBtn[i].addEventListener('click', async e => {
         e.preventDefault();
@@ -117,6 +124,20 @@
         console.log(err);
       });
   };
+  const updateTaskInDb = async () => {
+    return await axios
+      .put('/todo', {
+        name: addTaskNameInput.value,
+        done: addTaskDoneCheckbox.checked,
+        id: selectedTask.id,
+      })
+      .then(({ data }) => {
+        return data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const resetToDefaultForm = () => {
     addTaskDoneCheckbox.checked = false;
@@ -133,11 +154,14 @@
     resetToDefaultForm();
   });
 
-  okTaskBtn.addEventListener('click', e => {
+  okTaskBtn.addEventListener('click', async e => {
     e.preventDefault();
     okTaskBtn.classList.add('hidden');
     cancelTaskBtn.classList.add('hidden');
     addTaskBtn.classList.remove('hidden');
+    tasks = await updateTaskInDb();
+    resetToDefaultForm();
+    renderTodoList();
   });
 
   cancelTaskBtn.addEventListener('click', e => {
@@ -145,5 +169,6 @@
     okTaskBtn.classList.add('hidden');
     cancelTaskBtn.classList.add('hidden');
     addTaskBtn.classList.remove('hidden');
+    resetToDefaultForm();
   });
 })();

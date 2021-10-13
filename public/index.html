@@ -20,34 +20,34 @@
         <div class="overflow-auto lg:overflow-visible">
           <h2 class="text-2xl text-gray-200 font-bold text-center">TODO lista</h2>
           <div class="flex justify-start border-b-2 border-fuchsia-900 pb-1 items-end">
-            <div class="text-center flex-auto">
+            <!-- <div class="text-center flex-auto"> -->
+            <input
+              id="addTaskNameInput"
+              type="text"
+              name="name"
+              placeholder="Zadanie"
+              class="
+                bg-gray-900
+                text-white
+                w-auto
+                py-2
+                border-b-2 border-blue-600
+                outline-none
+                focus:border-yellow-400
+              "
+            />
+            <!-- </div> -->
+            <!-- <div class="text-center flex-auto"> -->
+            <label class="flex radio p-2 cursor-pointer font-extralight text-xs">
               <input
-                id="addTaskNameInput"
-                type="text"
-                name="name"
-                placeholder="Zadanie"
-                class="
-                  bg-gray-900
-                  text-white
-                  w-100
-                  py-2
-                  border-b-2 border-blue-600
-                  outline-none
-                  focus:border-yellow-400
-                "
+                id="addTaskDoneCheckbox"
+                class="my-auto transform scale-125"
+                type="checkbox"
+                name="done"
               />
-            </div>
-            <div class="text-center flex-auto">
-              <label class="flex radio p-2 cursor-pointer font-extralight text-xs">
-                <input
-                  id="addTaskDoneCheckbox"
-                  class="my-auto transform scale-125"
-                  type="checkbox"
-                  name="done"
-                />
-                <div class="px-1 my-auto text-white">zrobione</div>
-              </label>
-            </div>
+              <div class="px-1 my-auto text-white">zrobione</div>
+            </label>
+            <!-- </div> -->
             <a
               href="#"
               id="addTaskBtn"
