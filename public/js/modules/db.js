@@ -45,8 +45,6 @@ const addTaskToDb = async () => {
       done: addTaskDoneCheckbox.checked,
     })
     .then(({ data }) => {
-      console.log({ data });
-
       return data;
     })
     .catch(err => {
