@@ -24,8 +24,6 @@ const deleteTaskFromDb = async () => {
 };
 
 const updateTaskInDb = async () => {
-  //   console.log({ variables.selectedTask });
-
   return await axios
     .put('/todo', {
       name: addTaskNameInput.value,

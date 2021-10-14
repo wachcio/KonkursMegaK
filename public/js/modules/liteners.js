@@ -48,7 +48,6 @@ const addListeners = () => {
     editTaskBtn[i].addEventListener('click', async e => {
       e.preventDefault();
       variables.selectedTask = variables.tasks[i];
-      //   console.log('editBTN', { variables.selectedTask });
 
       okTaskBtn.classList.remove('hidden');
       cancelTaskBtn.classList.remove('hidden');

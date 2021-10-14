@@ -19,8 +19,6 @@ const updateNodeLists = () => {
 };
 
 const renderTodoList = async () => {
-  // console.log('render', { variables.selectedTask });
-
   if (variables.tasks.length === 0) return;
 
   let HTML = '';
