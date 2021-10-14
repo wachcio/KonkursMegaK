@@ -1,3 +1,4 @@
+import { variables } from './variables.js';
 import { addTaskDoneCheckbox, addTaskNameInput } from './nodeLists.js';
 
 const getItemsFromAPI = async () => {
@@ -11,9 +12,9 @@ const getItemsFromAPI = async () => {
     });
 };
 
-const deleteTaskFromDb = async selectedTask => {
+const deleteTaskFromDb = async () => {
   return await axios
-    .delete('/todo', { data: { id: selectedTask.id } })
+    .delete('/todo', { data: { id: variables.selectedTask.id } })
     .then(({ data }) => {
       return data;
     })
@@ -22,14 +23,14 @@ const deleteTaskFromDb = async selectedTask => {
     });
 };
 
-const updateTaskInDb = async selectedTask => {
-  console.log({ selectedTask });
+const updateTaskInDb = async () => {
+  //   console.log({ variables.selectedTask });
 
   return await axios
     .put('/todo', {
       name: addTaskNameInput.value,
       done: addTaskDoneCheckbox.checked,
-      id: selectedTask.id,
+      id: variables.selectedTask.id,
     })
     .then(({ data }) => {
       return data;

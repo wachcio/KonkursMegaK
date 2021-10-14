@@ -1,3 +1,4 @@
+import { variables } from './variables.js';
 import {
   taskItem,
   editTaskBtn,
@@ -13,27 +14,27 @@ import {
 
 import { addTaskToDb, deleteTaskFromDb, updateTaskInDb } from './db.js';
 
-const addListeners = (tasks, selectedTask) => {
+const addListeners = () => {
   taskItem.map((el, i) => {
     editTaskBtn[i].addEventListener('click', async e => {
       e.preventDefault();
-      selectedTask = tasks[i];
-      console.log('editBTN', { selectedTask });
+      variables.selectedTask = variables.tasks[i];
+      //   console.log('editBTN', { variables.selectedTask });
 
       okTaskBtn.classList.remove('hidden');
       cancelTaskBtn.classList.remove('hidden');
       addTaskBtn.classList.add('hidden');
 
-      addTaskNameInput.value = selectedTask.name;
-      addTaskDoneCheckbox.checked = selectedTask.done;
+      addTaskNameInput.value = variables.selectedTask.name;
+      addTaskDoneCheckbox.checked = variables.selectedTask.done;
     });
 
     deleteTaskBtn[i].addEventListener('click', async e => {
       e.preventDefault();
-      selectedTask = tasks[i];
+      variables.selectedTask = variables.tasks[i];
 
-      tasks = await deleteTaskFromDb(selectedTask);
-      await renderTodoList(tasks, selectedTask);
+      variables.tasks = await deleteTaskFromDb(variables.selectedTask);
+      await renderTodoList();
     });
   });
 };

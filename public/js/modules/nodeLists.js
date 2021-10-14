@@ -1,3 +1,4 @@
+import { variables } from './variables.js';
 import { addListeners } from './liteners.js';
 
 const addTaskBtn = document.querySelector('#addTaskBtn');
@@ -17,15 +18,15 @@ const updateNodeLists = () => {
   deleteTaskBtn = document.querySelectorAll('.deleteTaskBtn');
 };
 
-const renderTodoList = async (tasks, selectedTask) => {
-  console.log('render', { selectedTask });
+const renderTodoList = async () => {
+  // console.log('render', { variables.selectedTask });
 
-  if (tasks.length === 0) return;
+  if (variables.tasks.length === 0) return;
 
   let HTML = '';
   tasksList.innerHTML = '';
 
-  tasks.map(({ name, done, id }, idx) => {
+  variables.tasks.map(({ name, done, id }, idx) => {
     HTML += `
     <tr class="taskItem bg-blue-300 lg:text-black" data-task-id="${id}">
               <td class="taskItemOrdinalNumber p-3 font-medium text-gray-700">${idx + 1}.</td>
@@ -53,9 +54,9 @@ const renderTodoList = async (tasks, selectedTask) => {
 
   tasksList.innerHTML += HTML;
 
-  updateNodeLists(selectedTask);
+  updateNodeLists(variables.selectedTask);
 
-  addListeners(tasks, selectedTask);
+  addListeners(variables.tasks, variables.selectedTask);
 };
 
 const resetToDefaultForm = () => {

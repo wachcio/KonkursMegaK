@@ -1,3 +1,4 @@
+import { variables } from './modules/variables.js';
 import {
   addTaskBtn,
   tasksList,
@@ -17,17 +18,14 @@ import { getItemsFromAPI, deleteTaskFromDb, updateTaskInDb, addTaskToDb } from '
 import { addListeners } from './modules/liteners.js';
 
 (async () => {
-  let tasks = [];
-  let selectedTask = {};
-
-  tasks = await getItemsFromAPI();
-  //   console.log(tasks);
+  variables.tasks = await getItemsFromAPI();
+  //   console.log(variables.tasks);
 
   addTaskBtn.addEventListener('click', async e => {
     e.preventDefault();
     if (addTaskNameInput.value === '') return;
-    tasks = await addTaskToDb();
-    await renderTodoList(tasks, selectedTask);
+    variables.tasks = await addTaskToDb();
+    await renderTodoList();
     resetToDefaultForm();
   });
 
@@ -36,12 +34,11 @@ import { addListeners } from './modules/liteners.js';
     okTaskBtn.classList.add('hidden');
     cancelTaskBtn.classList.add('hidden');
     addTaskBtn.classList.remove('hidden');
-    tasks = await updateTaskInDb(selectedTask);
-    selectedTask = selectedTask;
-    console.log('okBtn', { tasks, selectedTask });
+    variables.tasks = await updateTaskInDb();
+    // console.log('okBtn', { variables.tasks, selectedTask });
 
     resetToDefaultForm();
-    renderTodoList(tasks, selectedTask);
+    renderTodoList();
   });
 
   cancelTaskBtn.addEventListener('click', e => {
@@ -51,7 +48,7 @@ import { addListeners } from './modules/liteners.js';
     addTaskBtn.classList.remove('hidden');
     resetToDefaultForm();
   });
-  await renderTodoList(tasks, selectedTask);
-  //   addListeners(tasks, selectedTask);
+  await renderTodoList();
+  //   addListeners(variables.tasks, selectedTask);
   resetToDefaultForm();
 })();
