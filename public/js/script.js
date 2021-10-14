@@ -11,7 +11,7 @@ import {
   updateNodeLists,
 } from './modules/nodeLists.js';
 
-import { getItemsFromAPI, deleteTaskFromDb, updateTaskInDb } from './modules/db.js';
+import { getItemsFromAPI, deleteTaskFromDb, updateTaskInDb, addTaskToDb } from './modules/db.js';
 
 (async () => {
   let tasks = [];
@@ -81,20 +81,6 @@ import { getItemsFromAPI, deleteTaskFromDb, updateTaskInDb } from './modules/db.
     addListeners();
   };
   await renderTodoList();
-
-  const addTaskToDb = async () => {
-    return await axios
-      .post('/todo', {
-        name: addTaskNameInput.value,
-        done: addTaskDoneCheckbox.checked,
-      })
-      .then(({ data }) => {
-        return data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
 
   const resetToDefaultForm = () => {
     addTaskDoneCheckbox.checked = false;

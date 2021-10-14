@@ -37,4 +37,18 @@ const updateTaskInDb = async selectedTask => {
     });
 };
 
-export { getItemsFromAPI, deleteTaskFromDb, updateTaskInDb };
+const addTaskToDb = async () => {
+  return await axios
+    .post('/todo', {
+      name: addTaskNameInput.value,
+      done: addTaskDoneCheckbox.checked,
+    })
+    .then(({ data }) => {
+      return data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export { getItemsFromAPI, deleteTaskFromDb, updateTaskInDb, addTaskToDb };
