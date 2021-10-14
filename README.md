@@ -1,6 +1,7 @@
 # KonkursMegaK
 
 Projekt konkursowy TODO lista na kursie MegaK wykonany w vanilla JS oraz framework Express.js
+Wersja live dostępna pod: http://todomegak.wachcio.pl/
 
 ## Zrobione:
 
