@@ -1,5 +1,5 @@
 import { variables } from './variables.js';
-import { addListeners } from './liteners.js';
+import { addListeners } from './listeners.js';
 
 const addTaskBtn = document.querySelector('#addTaskBtn');
 const tasksList = document.querySelector('#tasksList');
