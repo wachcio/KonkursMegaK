@@ -27,6 +27,7 @@ router.put('/', async (req, res, next) => {
   tasks = await readToDB();
 
   await updateDB(req.body, tasks);
+  await writeToDB(tasks);
   res.json(tasks);
 });
 
