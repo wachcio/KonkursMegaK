@@ -85,7 +85,7 @@
                  ${name}
                 </td>
 
-                <td class="taskItemDone p-3">
+                <td class="taskItemDone text-center p-3">
                   <span class="${
                     done === true ? 'bg-green-500' : 'bg-red-500'
                   }  text-gray-50 rounded-md px-2 uppercase">${
