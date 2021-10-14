@@ -1,52 +1,23 @@
+import {
+  addTaskBtn,
+  tasksList,
+  addTaskDoneCheckbox,
+  addTaskNameInput,
+  okTaskBtn,
+  cancelTaskBtn,
+  taskItem,
+  editTaskBtn,
+  deleteTaskBtn,
+  updateNodeLists,
+} from './modules/nodeLists.js';
+
+import { getItemsFromAPI, deleteTaskFromDb, updateTaskInDb } from './modules/db.js';
+
 (async () => {
-  const addTaskBtn = document.querySelector('#addTaskBtn');
-  const tasksList = document.querySelector('#tasksList');
-  const addTaskDoneCheckbox = document.querySelector('#addTaskDoneCheckbox');
-  const addTaskNameInput = document.querySelector('#addTaskNameInput');
-  const okTaskBtn = document.querySelector('#okTaskBtn');
-  const cancelTaskBtn = document.querySelector('#cancelTaskBtn');
-
-  let taskItem = Array.from(document.querySelectorAll('.taskItem'));
-  let taskItemDone = document.querySelectorAll('.taskItemDone');
-  let taskItemName = document.querySelectorAll('.taskItemName');
-  let editTaskBtn = document.querySelectorAll('.editTaskBtn');
-  let deleteTaskBtn = document.querySelectorAll('.deleteTaskBtn');
-
   let tasks = [];
   let selectedTask = {};
 
-  const updateNodeLists = () => {
-    taskItem = Array.from(document.querySelectorAll('.taskItem'));
-    taskItemDone = document.querySelectorAll('.taskItemDone');
-    taskItemName = document.querySelectorAll('.taskItemName');
-    editTaskBtn = document.querySelectorAll('.editTaskBtn');
-    deleteTaskBtn = document.querySelectorAll('.deleteTaskBtn');
-  };
-
-  const getItemsFromAPI = async () => {
-    return (tasks = await axios
-      .get('/todo')
-      .then(function ({ data }) {
-        return data;
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      }));
-  };
-
-  await getItemsFromAPI();
-
-  const deleteTaskFromDb = async () => {
-    return await axios
-      .delete('/todo', { data: { id: selectedTask.id } })
-      .then(({ data }) => {
-        return data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  tasks = await getItemsFromAPI();
 
   const addListeners = () => {
     taskItem.map((el, i) => {
@@ -65,7 +36,7 @@
         e.preventDefault();
         selectedTask = tasks[i];
 
-        tasks = await deleteTaskFromDb();
+        tasks = await deleteTaskFromDb(selectedTask);
         await renderTodoList();
       });
     });
@@ -105,7 +76,7 @@
 
     tasksList.innerHTML += HTML;
 
-    updateNodeLists();
+    updateNodeLists(selectedTask);
 
     addListeners();
   };
@@ -116,20 +87,6 @@
       .post('/todo', {
         name: addTaskNameInput.value,
         done: addTaskDoneCheckbox.checked,
-      })
-      .then(({ data }) => {
-        return data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  const updateTaskInDb = async () => {
-    return await axios
-      .put('/todo', {
-        name: addTaskNameInput.value,
-        done: addTaskDoneCheckbox.checked,
-        id: selectedTask.id,
       })
       .then(({ data }) => {
         return data;
@@ -159,7 +116,7 @@
     okTaskBtn.classList.add('hidden');
     cancelTaskBtn.classList.add('hidden');
     addTaskBtn.classList.remove('hidden');
-    tasks = await updateTaskInDb();
+    tasks = await updateTaskInDb(selectedTask);
     resetToDefaultForm();
     renderTodoList();
   });
