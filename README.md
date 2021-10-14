@@ -10,7 +10,7 @@ Wersja live dostępna pod: http://todomegak.wachcio.pl/<br>
 -podział na moduły<br>
 -zamiana pierwszej litery na dużą w nazwie zadania<br>
 -dodanie lub modyfikacja zadania za pomocą dedykowanych wizualnych przycisków lub klawisza enter<br>
--wydzielenie zmiennych najważniejszych zmiennych do oddzielnego modułu dzięki czemu jest do nich dostęp wszędzie co jest odpowiednikiem prostego 'single source of truth' (SSOT)<br>
+-wydzielenie najważniejszych zmiennych do oddzielnego modułu dzięki czemu jest do nich dostęp wszędzie co jest odpowiednikiem prostego 'single source of truth' (SSOT)<br>
 
 ## Do zrobienia:
 
