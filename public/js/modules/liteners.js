@@ -34,6 +34,23 @@ const addListenersToIDs = () => {
     renderTodoList();
   });
 
+  addTaskNameInput.addEventListener('keypress', async e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (addTaskBtn.classList.contains('hidden')) {
+        okTaskBtn.classList.add('hidden');
+        cancelTaskBtn.classList.add('hidden');
+        addTaskBtn.classList.remove('hidden');
+        variables.tasks = await updateTaskInDb();
+      } else {
+        if (addTaskNameInput.value === '') return;
+        variables.tasks = await addTaskToDb();
+      }
+      renderTodoList();
+      resetToDefaultForm();
+    }
+  });
+
   cancelTaskBtn.addEventListener('click', e => {
     e.preventDefault();
     okTaskBtn.classList.add('hidden');
