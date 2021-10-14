@@ -19,14 +19,14 @@ const updateNodeLists = () => {
 };
 
 const renderTodoList = async () => {
-  if (variables.tasks.length === 0) return;
-
   let HTML = '';
   tasksList.innerHTML = '';
 
+  if (variables.tasks.length === 0) return;
+
   variables.tasks.map(({ name, done, id }, idx) => {
     HTML += `
-    <tr class="taskItem bg-blue-300 lg:text-black" data-task-id="${id}">
+    <tr class="taskItem bg-blue-300 lg:text-black hover:bg-blue-400" data-task-id="${id}">
               <td class="taskItemOrdinalNumber p-3 font-medium text-gray-700">${idx + 1}.</td>
               <td class="taskItemName p-3 font-medium text-gray-700">
                ${name}
