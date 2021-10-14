@@ -23,6 +23,8 @@ const deleteTaskFromDb = async selectedTask => {
 };
 
 const updateTaskInDb = async selectedTask => {
+  console.log({ selectedTask });
+
   return await axios
     .put('/todo', {
       name: addTaskNameInput.value,
@@ -44,6 +46,8 @@ const addTaskToDb = async () => {
       done: addTaskDoneCheckbox.checked,
     })
     .then(({ data }) => {
+      console.log({ data });
+
       return data;
     })
     .catch(err => {
