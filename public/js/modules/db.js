@@ -1,5 +1,6 @@
 import { variables } from './variables.js';
 import { addTaskDoneCheckbox, addTaskNameInput } from './nodeLists.js';
+import { capitalizeFirstLetter } from './capitalizeFirstLetter.js';
 
 const getItemsFromAPI = async () => {
   return await axios
@@ -26,7 +27,7 @@ const deleteTaskFromDb = async () => {
 const updateTaskInDb = async () => {
   return await axios
     .put('/todo', {
-      name: addTaskNameInput.value,
+      name: capitalizeFirstLetter(addTaskNameInput.value),
       done: addTaskDoneCheckbox.checked,
       id: variables.selectedTask.id,
     })
@@ -41,7 +42,7 @@ const updateTaskInDb = async () => {
 const addTaskToDb = async () => {
   return await axios
     .post('/todo', {
-      name: addTaskNameInput.value,
+      name: capitalizeFirstLetter(addTaskNameInput.value),
       done: addTaskDoneCheckbox.checked,
     })
     .then(({ data }) => {
