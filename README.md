@@ -16,5 +16,4 @@ Wersja live dostępna pod: http://todomegak.wachcio.pl/<br>
 ## Do zrobienia:
 
 -obsługa błędów mogących pojawić się podczas komunikacji back-end i front-end<br>
-
 -animacje front-end<br>
