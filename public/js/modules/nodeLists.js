@@ -7,6 +7,7 @@ const addTaskDoneCheckbox = document.querySelector('#addTaskDoneCheckbox');
 const addTaskNameInput = document.querySelector('#addTaskNameInput');
 const okTaskBtn = document.querySelector('#okTaskBtn');
 const cancelTaskBtn = document.querySelector('#cancelTaskBtn');
+const spinner = document.querySelector('#spinner');
 
 let taskItem = Array.from(document.querySelectorAll('.taskItem'));
 let editTaskBtn = document.querySelectorAll('.editTaskBtn');
@@ -75,4 +76,5 @@ export {
   updateNodeLists,
   renderTodoList,
   resetToDefaultForm,
+  spinner,
 };
