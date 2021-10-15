@@ -5,7 +5,7 @@
  */
 
 const app = require('./app_index');
-const debug = require('debug')('fotowoltaika-server:server');
+const debug = require('debug')('megakKonkurs:server');
 const http = require('http');
 
 /**
