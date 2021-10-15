@@ -12,6 +12,7 @@ Wersja live dostępna pod: http://todomegak.wachcio.pl/<br>
 -dodanie lub modyfikacja zadania za pomocą dedykowanych wizualnych przycisków lub klawisza enter<br>
 -wydzielenie najważniejszych zmiennych do oddzielnego modułu dzięki czemu jest do nich dostęp wszędzie co jest odpowiednikiem prostego 'single source of truth' (SSOT)<br>
 -dodanie spinnera podczas ładowania danych z back-end<br>
+-favicon
 
 ## Do zrobienia:
 
